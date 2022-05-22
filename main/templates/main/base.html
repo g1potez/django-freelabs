@@ -1,0 +1,82 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type='text/css'>
+    <link rel="shortcut icon" href="{% static 'img/icon.png'%}" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<header>
+    <div class='logo'>
+        <a href='{% url 'index' %}'><img src="{% static 'img/logo.png' %}" alt='logo'></a>
+    </div>
+    <div class='burger'>
+        <div class='line1'></div>
+        <div class='line2'></div>
+        <div class='line3'></div>
+    </div>
+    <ul class='header-values'>
+        <li id='recommend'><a href='{% url 'recommends' %}'>Рекомендации</a></li>
+        <li id='charts'><a href='{% url 'charts' %}'>Чарты</a></li>
+        {% if user.is_authenticated %}
+            <li><a href='{% url 'profile' %}' class='user'>{{ user.username }}</a></li>
+            <li><a href='{% url 'sign_out' %}'><input type='submit' class='login' value='Выйти'></a></li>
+        {% else %}
+            <li id='login'><a href='{% url 'sign_in' %}'><input type='submit' class='login' value='Войти'></a></li>
+        {% endif %}
+    </ul>
+</header>
+<div class='main'>
+    {% block content %}
+    {% endblock %}
+</div>
+<div class='trackbar'>
+    <div class='trackbar-btn'>
+        <img class='btn prev' src="{% static 'img/prev.svg'%}">
+        <img class='btn play' src="{% static 'img/play.svg'%}">
+        <img class='btn next' src="{% static 'img/next.svg'%}">
+    </div>
+    <div class='trackbar-progress'>
+        <div class='trackbar-info'></div>
+        <div class='progress-container'>
+            <div class='progress'></div>
+            <div class='progress-select'></div>
+        </div>
+    </div>
+</div>
+<footer>
+    <div class='footer-container'>
+        <hr>
+        <div class='footer-content'>
+            <div class='footer-head'>
+                <h2>Главная</h2>
+                <ul class='footer-header'>
+                    <li id='recommend'><a href='{% url 'recommends' %}'>Рекомендации</a></li>
+                    <li id='charts'><a href='{% url 'charts' %}'>Чарты</a></li>
+                </ul>
+            </div>
+            <div class='footer-faq'>
+                <h2>FAQ</h2>
+                <ul class='footer-header'>
+                    <li id='about'><a href='#'>О нас</a></li>
+                    <li id='terms'><a href='#'>Условия использования</a></li>
+                    <li id='support'><a href='{% url 'support' %}'>Поддержка</a></li>
+                </ul>
+            </div>
+        </div>
+        <p class='footer-copyright'>©Freelabs 2022</p>
+    </div>
+</footer>
+<script src="{% static 'js/script.js' %}"></script>
+<script>
+let audio_listen_url = '{% url 'addlisten' %}';
+let token = '{{ csrf_token }}';
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}FreeLabs{% endblock %}
+{% block content %}
+    <div class='welcome'>
+        <div class='slogan'>
+            <div class='slogan-container'>
+                <h1>Делись и слушай музыку без авторского права</h1>
+                <p>Наша платформа предназначена для предоставления музыки без авторских прав для стримеров, ютуберов и конечно для обычных людей...</p>
+            </div>
+        </div>
+        <div class='search'>
+            <form method='get' class='search-container'>
+                <input type='search' placeholder='Поиск артиста или музыки...' class='searchBar' name='search'>
+                <button class='searchButton'><img src="{% static 'img/glass.png' %}" alt='glass'></button>
+            </form>
+        </div>
+    </div>
+    <div class='recommends'>
+        <h2>Рекомендации</h2>
+        <div class='tracks'>
+            {% for track in tracks %}
+                <div class='profile-track'>
+                  <div class='profile-track-container'>
+                    <div class='track-info'>
+                      <div class='track-circle'>
+                        <img src="{% static '/img/track-circle.png'%}" alt='circle' class='circle'>
+                      </div>
+                      <p class='track-name'><b>{{ track.track_name}}</b></p>
+                      </div>
+                        <p class='track-user'>{{ track.user }}</p>
+                        <p class='track-auditions'>{{track.auditions}}</p>
+                        <audio id='audio' preload="auto" loop>
+                          <source src="/media/{{ track.source }}" type='audio/mpeg' id='{{ track.id }}'>
+                          <source src="/media/{{ track.source }}" type='audio/wav' id='{{ track.id }}'>
+                          Ваш браузер не поддерживает audio. Пожалуйста, обновите браузер!
+                        </audio>
+                      </div>
+                  </div>
+            {% endfor %}
+        </div>
+        <a href="{% url 'recommends' %}" class='more'>Больше...</a>
+    </div>
+    <div class='charts'>
+        <h2>Чарты</h2>
+        <div class='tracks'>
+              <ol>
+                {% for track in charts %}
+                <li>
+                      <div class='profile-track-container'>
+                        <div class='track-info'>
+                          <div class='track-circle'>
+                            <img src="{% static '/img/track-circle.png'%}" alt='circle' class='circle'>
+                          </div>
+                          <p class='track-name'><b>{{ track.track_name}}</b></p>
+                          </div>
+                            <p class='track-user'>{{ track.user }}</p>
+                            <p class='track-auditions'>{{track.auditions}}</p>
+                            <audio id='audio' preload="auto" loop>
+                              <source src="/media/{{ track.source }}" type='audio/mpeg' id='{{ track.id }}'>
+                              <source src="/media/{{ track.source }}" type='audio/wav' id='{{ track.id }}'>
+                              Ваш браузер не поддерживает audio. Пожалуйста, обновите браузер!
+                            </audio>
+                          </div>
+                </li>
+                {% endfor %}
+              </ol>
+        </div>
+        <a href="{% url 'charts' %}" class='more'>Больше...</a>
+    </div>
+{% endblock %}

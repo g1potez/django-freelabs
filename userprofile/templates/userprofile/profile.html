@@ -1,0 +1,73 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}Профиль{% endblock %}
+{% block content %}
+{% if user.is_authenticated %}
+<div class='profile'>
+  <div class='profile-container'>
+    <div class='profile-info'>
+      <div class='profile-info-container'>
+        {% if not image %}
+        <img src="{% static 'img/none_avatar.png' %}" alt='user-avatar' class='user-avatar'>
+        {% else %}
+        {% for img in image %}
+        <img src="/media/{{ img.image }}" alt='user-avatar' class='user-avatar'>
+        {% endfor %}
+        {% endif %}
+        <div class='profile-editname'>
+          <h1 class='profile-username'>{{ user.username }}</h1>
+          <a href='edit/'>Редактировать профиль...</a>
+          {% if request.user.is_superuser %}
+          <br><a href='{% url 'admin:index' %}'>Панель администратора</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class='profile-loadtrack'>
+      <h2>Загрузить музыку</h2>
+      <form enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input type='submit' name='load' value='Load' class='load'>
+      </form>
+      <p id='success'>{{ message }}</p>
+      <p id='error'>{{ message_error }}</p>
+    </div>
+    <div class='profile-tracks'>
+      <div class='profile-tracks-container'>
+        <h2>Ваша музыка</h2>
+        <div class='tracks'>
+          {% for track in tracks %}
+          <div class='profile-track'>
+            <div class='profile-track-container'>
+              <div class='track-info'>
+                <div class='track-circle'>
+                  <img src="{% static '/img/track-circle.png'%}" alt='circle' class='circle'>
+                </div>
+                <p class='track-name'><b>{{ track.track_name}}</b></p>
+                </div>
+                  <!-- <p class='track-user'>{{ track.user }}</p> -->
+                  <p class='track-auditions'>{{track.auditions}}</p>
+                  <audio id='audio' preload="auto" loop>
+                    <source src="/media/{{ track.source }}" type='audio/mpeg' id='{{ track.id }}'>
+                    <source src="/media/{{ track.source }}" type='audio/wav' id='{{ track.id }}'>
+                    Ваш браузер не поддерживает audio. Пожалуйста, обновите браузер!
+                  </audio>
+                </div>
+            </div>
+          {% endfor %}
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% else %}
+  <h1>Упс...</h1>
+  <p>Пожалуйста, войдите в свой аккаунт!</p>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+{% endif %}
+{% endblock %}

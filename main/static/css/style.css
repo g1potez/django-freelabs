@@ -1,0 +1,512 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font-family: 'Open Sans', sans-serif;
+  color: #ffffff;
+  font-size: 18px;
+}
+
+/* Main setting */
+
+body {
+  padding-top: 50px;
+  background-color: #131218;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+h2 {
+  font-size: 25px;
+}
+a {
+  text-decoration: none;
+  transition: 0.3s;
+  color: white;
+}
+h1 {
+  font-size: 50px;
+  margin-bottom: 10px;
+}
+
+.slogan {
+  text-shadow: 0 0 5px black;
+}
+/* Header */
+
+.logo img {
+  width: 150px;
+  height: 100%;
+  object-fit: contain;
+}
+li a:hover {
+  color: #AF7AEB;
+}
+.login {
+  background-color: #711ECF;
+  width: 75px;
+  border-style: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.login:hover {
+  background-color: #461083;
+}
+
+.header-values {
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+.header-values li {
+  padding: 0 20px;
+}
+header {
+  background-color: #0a0912;
+  position: fixed;
+  top: 0;
+  display: flex;
+  width: calc(100% - 100px);
+  height: 50px;
+  justify-content: space-around;
+  padding: 0 50px;
+  z-index: 2;
+}
+header li {
+  list-style-type: none;
+}
+@media(max-width: 1080px) {
+  .header-values {
+    flex-direction: column;
+    position: absolute;
+    right: -1000px;
+    background-color: #1a1822;
+    height: 100vh;
+    text-align: center;
+    transition: 1s;
+  }
+  .header-values li {
+    padding-top: 100px;
+  }
+  .line1, .line3 {
+    width: 40px;
+    height: 3px;
+    background-color: #fff;
+  }
+  .line2 {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+  }
+  .line1, .line2 {
+    margin-bottom: 10px;
+  }
+  .burger {
+    position: relative;
+    top: 5px;
+    z-index: 5;
+  }
+  .header-values.active {
+    right: 0;
+  }
+}
+/* Welcome */
+
+.welcome {
+  padding-top: 70px;
+  padding-bottom: 70px;
+  background-image: url('/static/img/wall.jpg');
+  background-position: top center;
+  background-attachment:scroll;
+  background-size: cover;
+  width: 100%;
+}
+.search {
+  margin: 50px 0;
+}
+.slogan-container {
+  max-width: 70%;
+  margin: auto;
+  text-align: center;
+}
+.searchBar {
+  width: 50%;
+  padding: 12px;
+  background-color: #131218;
+  border: 1px solid;
+  border-radius: 25px;
+  box-shadow: 0 0 20px black;
+  font-size: 15px;
+}
+::placeholder {
+  color: #B8B8B8;
+}
+@media(max-width: 1850px) {
+  .searchBar {
+    width: 60%;
+  }
+}
+.searchButton {
+  border-radius: 30px;
+  border-style: none;
+  width: 46px;
+  height: 46px;
+  padding: 3px;
+  background-color: #ffffff;
+  transition: 0.3s;
+  position: relative;
+  right: 46px;
+  cursor: pointer;
+}
+.searchButton:hover {
+  background-color: #B4B4B4;
+}
+.searchButton img {
+  width: 35px;
+}
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.recommends-title {
+  margin-bottom: 40px;
+}
+
+/* Recommends */
+
+.chapter-welcome {
+  padding-top: 70px;
+  padding-bottom: 70px;
+  background-position: top center;
+  background-attachment:scroll;
+  background-size: cover;
+  width: 100%;
+}
+.recommends, .charts {
+  display: flex;
+  flex-direction: column;
+  max-width: 90%;
+  margin: auto;
+  text-align: center;
+  padding: 30px 0;
+}
+.chapter-welcome h1 {
+  font-size: 40px;
+}
+.more {
+  margin-top: 15px;
+}
+/* Footer */
+
+footer {
+  max-width: 80%;
+  margin: auto;
+}
+footer li {
+  margin-bottom: 20px;
+  list-style-type: none;
+}
+.footer-header a:hover {
+  color: #B4B4B4;
+}
+.footer-copyright {
+  text-align: center;
+  font-size: 20px;
+  color: #717171;
+}
+h2 {
+  margin-bottom: 30px;
+}
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 50px;
+  padding-top: 20px;
+}
+.footer-container {
+  max-width: 70%;
+  margin: auto;
+}
+
+/* Trackbar */
+
+.trackbar {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 15px 20px;
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+  width: 100%;
+  backdrop-filter: blur(10px);
+}
+
+.trackbar-btn {
+  display: flex;
+}
+.trackbar-btn img {
+  padding: 0 5px;
+  width: 40px;
+}
+.btn {
+  cursor: pointer;
+}
+.trackbar-progress {
+  width: 100%;
+  margin: 0 50px 0px 25px;
+  display: flex;
+  flex-direction: column;
+  height: 50px;
+  justify-content: space-between;
+}
+
+.progress-container {
+  width: 100%;
+  height: 5px;
+  background-color: rgba(0,0,0,0.3);
+  position: relative;
+}
+
+.progress {
+  background-color: #8418d4;
+  height: 5px;
+  width: 0px;
+  transition: width 0.16s linear;
+  position: absolute;
+}
+
+.progress-select {
+  background-color: #4e0d7e;
+  height: 5px;
+  width: 0px;
+  opacity: 0.5;
+  /*transition: width 0.16s linear;*/
+  position: absolute;
+}
+.tracks {
+  display: flex;
+  flex-direction: column;
+}
+a:hover {
+  color: #AF7AEB;
+}
+
+/* Profile */
+.user-avatar {
+  width: 230px;
+  height: 230px;
+  border-radius: 20px;
+  margin-right: 100px;
+  border: 5px solid;
+  border-color: #af70f7;
+}
+.profile-info {
+  max-width: 100%;
+  background-color: #131218;
+  height: 350px;
+  padding-top: 80px;
+}
+.profile-info-container {
+  max-width: 70%;
+  margin: auto;
+  display: flex;
+  margin-bottom: 50px;
+}
+.profile-loadtrack {
+  max-width: 70%;
+  margin: auto;
+  padding-bottom: 25px;
+  padding-top: 25px;
+}
+.profile-loadtrack form {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
+}
+.profile-tracks-container {
+  max-width: 70%;
+  margin: auto;
+  padding-bottom: 30px;
+}
+.profile-tracks {
+  background-color: #1c1a24;
+  max-width: 100%;
+}
+.profile-tracks h2 {
+  text-align: center;
+}
+.profile-track {
+  display: table-cell;
+  padding: 5px 0;
+}
+
+p, pre {
+  color: inherit;
+}
+
+.trackname {
+  background-color: #201d2c;
+  border-style: none;
+  border-radius: 30px;
+  padding: 10px;
+  width: 30%;
+  margin-right: 30px;
+}
+@media(max-width: 1300px) {
+  .trackname {
+    width: 80%;
+  }
+}
+.load {
+  background-color: #711ECF;
+  width: 110px;
+  font-size: 25px;
+  border-style: none;
+  border-radius: 30px;
+  transition: 0.3s;
+  padding: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.load:hover {
+  background-color: #461083;
+}
+#success, #error {
+  text-align: center;
+  font-size: 25px;
+}
+#success {
+  color: #27cf11;
+}
+#error {
+  color: #ff0037;
+}
+
+/* Edit Profile */
+
+#button {
+  color: #ffffff;
+  background-color: #711ECF;
+  width: 115px;
+  font-size: 25px;
+  border-style: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-bottom: 50px;
+}
+#button:hover {
+  background-color: #461083;
+}
+.edit-info {
+  display: flex;
+  margin: auto;
+  margin-bottom: 100px;
+}
+.edit-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+  margin: auto;
+  padding-top: 120px;
+}
+.edit-form input {
+  width: 100%;
+  background-color: #201D2C;
+  border-style: none;
+  border-radius: 30px;
+  padding: 10px;
+  margin-bottom: 50px;
+}
+
+/* Support */
+
+.support h1 {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.support-other {
+  text-align: center;
+  padding-bottom: 50px;
+  padding-top: 50px;
+  background-color: #16151a;
+}
+.support-container {
+  max-width: 50%;
+  margin: auto;
+}
+.support-container form {
+  display: flex;
+  flex-direction: column;
+}
+.support-wrapper {
+  background: url('/static/img/supp.jpg') no-repeat fixed;
+  background-size: cover;
+  padding-top: 120px;
+}
+.support-container input[type='email'], textarea {
+  width: 100%;
+  background-color: #ffffff;
+  border-style: none;
+  border-radius: 30px;
+  padding: 10px;
+  margin-bottom: 50px;
+  color: #000;
+}
+textarea {
+  height: 300px;
+}
+
+/* Track */
+
+ol li {
+  padding: 5px 0;
+}
+.track-info {
+  display: flex;
+  cursor: pointer;
+}
+.profile-track-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 55%;
+  margin: auto;
+  border-bottom-style: solid;
+  border-width: 1px;
+  margin-bottom: 10px;
+  border-color: #1f1d28;
+}
+.track-name {
+  overflow: hidden;
+    width: 100px;
+    word-wrap: break-word;
+}
+.track-name b{
+  transition: 0.3s;
+}
+.track-name b:hover {
+  color: #AF7AEB;
+}
+.track-user {
+  transition: 0.3s;
+  cursor: pointer;
+}
+.track-user:hover {
+  color: #AF7AEB;
+}
+.circle{
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+  transition: 5s;
+}
+.circle.active {
+  animation: rotate 10s linear infinite;
+}
+@keyframes rotate{
+  to{ transform: rotate(360deg); }
+}

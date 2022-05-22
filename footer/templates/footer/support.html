@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}Поддержка{% endblock %}
+{% block content %}
+<div class='support'>
+  <div class='support-wrapper'>
+    <div class='support-container'>
+      <h1>Мы всегда рады вам помочь!</h1>
+      <form method='post'>
+        {% csrf_token %}
+        {{ form }}
+        <input type='submit' value='Выслать' name='button' id='button'>
+        </form>
+        <p style='text-align: center; color: #27cf11;'>{{ message}}</p>
+    </div>
+  </div>
+  <div class='support-other'>
+    <h2>Или же вы можете написать нам на почту:</h2>
+    <p>support@freelabs.com</p>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'main/auth.html' %}
+{% block title %}Авторизация{% endblock %}
+
+{%block content %}
+    <div class='register'>
+        <h1>Авторизация</h1>
+        <form class='form-container' method="post">
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li style='color: red'{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% csrf_token %}
+            {{ form }}
+            <input type='submit' id='button' value='Войти'>
+            <div class='not_account'>Нет аккаунта?<a href='{% url 'sign_up' %}'>Создать аккаунт</a></div>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}Редактировать профиль{% endblock %}
+{% block content %}
+{% if user.is_authenticated %}
+<div class='edit'>
+  <div class='edit-container'>
+    <div class='edit-info'>
+      {% if not image %}
+      <img src="{% static 'img/none_avatar.png' %}" alt='user-avatar' class='user-avatar'>
+      {% else %}
+      {% for img in image %}
+      <img src="/media/{{ img.image }}" alt='user-avatar' class='user-avatar'>
+      {% endfor %}
+      {% endif %}
+      <h1 class='edit-username'>{{ user.username }}</h1>
+    </div>
+    <form class='edit-image' method='POST' enctype="multipart/form-data">
+      {% csrf_token %}
+      {% if messages %}
+          <ul class="messages">
+              {% for message in messages %}
+                  <li style='color: red'{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+              {% endfor %}
+          </ul>
+      {% endif %}
+      {{ form_img }}
+      <input type='submit' name='save_img' value='Save' id='button'>
+    </form>
+    <form class='edit-form' method='POST'>
+      {% csrf_token %}
+      {% if messages %}
+          <ul class="messages">
+              {% for message in messages %}
+                  <li style='color: red'{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+              {% endfor %}
+          </ul>
+      {% endif %}
+      {{ form }}
+      <input type='submit' name='save' value='Save' id='button'>
+    </form>
+  </div>
+</div>
+{% else %}
+<h1>Упс...</h1>
+<p>Пожалуйста, войдите в свой аккаунт!</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+{% endif %}
+{% endblock %}
